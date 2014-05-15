@@ -1,0 +1,106 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/scroller.js');
+    oIP.includeJS('../system/js/articles_with_carousel.js');
+</script>
+
+<!-- CONTROL_SETTINGS
+objCnt/99
+pObjCnt/99
+lObjCnt/99
+paging/false
+-->
+
+
+<script id="ArticlesCarouselTmpl" type="x-jquery-tmpl">
+    <div id="categoriesContainer" class="_pageContainerCustomTheme">
+        <div class="categoriesWrapper">
+            <p class="categoriesHeader _pageCaptionCustomTheme">${cat}</p>        
+            {{if top.length}}
+            <div id="topWrapper">
+                <div id="topScroller">
+                    {{tmpl(top) "#ArticlesTopCarousel"}}
+                </div>
+                <div class="pagination">
+                    <ul id="indi">
+                        {{tmpl(top) "#TopCarouselIndicators"}}
+                    </ul>
+                </div>
+            </div>
+            {{/if}}
+    
+            <div id="bottomWrapper" class="home_bottomWrapper">         
+                <ul id="bottomScroller">
+                    {{tmpl(bottom) "#ArticlesBottomCarousel"}}            
+                </ul>
+            </div>     
+        </div>
+    </div>                
+</script>
+
+<script id="ArticlesTopCarousel" type="x-jquery-tmpl">
+    <a href="${article_url}">
+        <div class="banner" style="-webkit-transform: translate3d(0, 0, 0);">
+            <div id="art_${item_id}" class="categoriesMain carousel_img">
+                <div class="oLazy" src="${image_url}" id="${item_id}"><img src="../system/images/lazy_load.gif" ></div>
+            </div>
+            <div class="banner_overlay">
+                <div class="carousal_title _postTitleCustomTheme">${item_title}</div>
+            </div>
+        </div>
+    </a>
+</script>
+
+<script id="TopCarouselIndicators" type="x-jquery-tmpl">
+    <li class="pagination-circles unactive"></li>
+</script>
+
+<script id="ArticlesBottomCarousel" type="x-jquery-tmpl">
+    <li class="categoriesRow" style="-webkit-transform: translate3d(0, 0, 0);">
+        <a href="${article_url}">
+            {{if image_url}}
+            <div id="art_${item_id}" class="categoriesRowImg" >
+                <div class="oLazy" src="${image_url}" id="${item_id}"><img src="../system/images/lazy_load.gif" ></div>
+            </div>
+            {{/if}}
+            <div class="categoriesRowCopy">
+                <p class="categoriesTitle _postTitleCustomTheme">${item_title}</p>
+                <p class="categoriesDate _postByLineCustomTheme">${p_date} {{if author}}  by ${author} {{/if}} </p>
+                <p class="categoriesCopy _postDescCustomTheme">${item_descriptions}</p>
+            </div>
+        </a>
+    </li>
+</script>
+
+<script id="footerAdTmpl" type="x-jquery-tmpl">  
+    <a href="${action_url}"><div style="background:#FFF url('${thumb}') no-repeat center;background-size:cover;"></div>
+</script>
+
+<script type="text/javascript">
+    showFooterAds($('body'), oIP.adJson);
+    function showFooterAds(context, json){
+        if (json == null || Object.keys(json).length == 0)
+            return;
+        var array = [];
+        $.each( json, function(key, item) {
+            if (item.ad_description && item.ad_description.toLowerCase() == 'footer') {
+                item.thumb = item.images[0] ? item.images[0].link : "";
+                array.push(item);
+            }
+        }); 
+
+        if(array.length == 0){
+           return;
+        }
+
+        var item = Math.round(Math.random() * (array.length - 1));
+        if ($("#footer-ad", context).length == 0)
+           $('<div id="footer-ad"></div>').appendTo(context);
+        $("#footer-ad", context).html($("#footerAdTmpl").tmpl(array[item]));
+        $('#footer-ad').click(function(){
+            _recordAdsView(network_id, array[item].ad_id, array[item].action_url, null, 1, 0);
+        });
+    }
+</script>

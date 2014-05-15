@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/search.js');
+</script>
+
+<!-- CONTROL_SETTINGS
+objCnt/10
+pObjCnt/10
+lObjCnt/10
+paging/false
+-->
+
+
+<script id="searchResultsTemplate" type="x-jquery-tmpl">
+    <div id="favoritesContainer" class="_pageContainerCustomTheme searchPageContainer">
+	   <div class="favoritesWrapper">
+                  <div class="searchPageForm">
+                       <form onSubmit="return false">
+                           <input id="sections_searchPage" type="search" class="sections_searchPageBox defaultText" name="q" onblur="if(this.value == '') this.value = 'Search...';" onfocus="if(this.value == 'Search...') this.value = '';" value="Search...">                        
+                       </form>
+                  </div>
+                  <div class="favoritesScroll">
+                      <div class="favoritesScroller"></div>
+                  </div>
+	</div>
+</div>
+</script>
+
+<script id="searchResultItemTemplate" type="x-jquery-tmpl">
+      <div class="favoritesRow">
+            <a href="${url}">
+			<div class="favoritesRowCopy">
+				<p class="favoritesTitle _postTitleCustomTheme">${title}</p>
+				<p class="favoritesDate _postByLineCustomTheme">${p_date}</p>
+				<p class="favoritesCopy _postDescCustomTheme">${desc}</p>
+			</div>
+            </a>
+      </div>
+</script>
+
+<script type="text/javascript">
+function clear_textbox() {
+    if (document.text_form.u_input.value == " Enter Your Search Here ")
+        document.text_form.u_input.value = "";
+    } 
+</script>
+<!-- End of container -->

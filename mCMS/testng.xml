@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Filename: testng.xml
+  Note: You have to change the following according to your environment:
+          -<class name="com.packageName.MyTestClassName" />  
+-->
+<!DOCTYPE suite SYSTEM "http://beust.com/testng/testng-1.0.dtd" >
+<suite name="My Test Suite">
+ 
+  <test name="My Test">
+ 
+    <!--  Add all classes you would like TestNG to run. -->  
+    <classes>
+      <class name="com.genwi.contentModification" />
+    </classes>
+ 
+  </test>
+ 
+</suite>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [My Test Suite]">
+  <test name="My Test(failed)">
+    <classes>
+      <class name="com.genwi.contentModification">
+        <methods>
+          <include name="delCat"/>
+          <include name="delFeed"/>
+          <include name="deletefavoritesDesign"/>
+          <include name="addSMFeed"/>
+          <include name="categoriesDesign"/>
+          <include name="deletearticleDesign"/>
+          <include name="deltoolbarDesign"/>
+          <include name="favoritesDesign"/>
+          <include name="searchDesign"/>
+          <include name="delSMFeed"/>
+          <include name="editCat"/>
+          <include name="beforeClass"/>
+          <include name="toolbarDesign"/>
+          <include name="deactivateCat"/>
+          <include name="delPost"/>
+          <include name="deletecategoriesDesign"/>
+          <include name="deletecategoryMenuDesign"/>
+          <include name="editPost"/>
+          <include name="categoryMenuDesign"/>
+          <include name="deletesearchDesign"/>
+          <include name="addPost"/>
+          <include name="deletearticlesDesign_carousel"/>
+          <include name="articlesDesign_carousel"/>
+        </methods>
+      </class> <!-- com.genwi.contentModification -->
+    </classes>
+  </test> <!-- My Test(failed) -->
+</suite> <!-- Failed suite [My Test Suite] -->

@@ -1,0 +1,66 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+
+<script type="text/javascript">
+	oIP.includeJS('../system/js/sections_menu.js');	
+    oIP.registerSettings('{"name":"sections_menu","type":"sections","style":"1","fetchData":"false","tablet":{"landscape":{"width":"450","x":"850","y":"70"},"portrait":{"width":"350","x":"598","y":"66"}},"smartphone":{"landscape":{"width":"202","x":"66","y":"70"},"portrait":{"width":"202","x":"120","y":"70"}}}');	
+</script>
+
+<!-- CONTROL_SETTINGS
+objCnt/99
+pObjCnt/99
+lObjCnt/99
+paging/false
+-->
+
+<script id="sectionsTmpl" type="x-jquery-tmpl">
+    <!-- Start of container -->
+    <div id="left_nav">
+        <div class="sectionsMenuContainer _sectionsCustomTheme">
+            <div class="searchForm">
+                <form onSubmit="return false">
+                    <input type="search" class="sections_searchBox"  onblur="if(this.value == '') this.value = 'Search...';" onfocus="if(this.value == 'Search...') this.value = '';"  id="sections_search" value="Search...">                        
+                </form>
+            </div>
+            <div class="topScrollerGap" style="height: 3em;" />
+            <div class="sectionsScroller">
+                <ul class="sectionItems">
+                    {{tmpl(sections) "#sectionsFillerTmpl"}}
+                </ul>
+            </div>
+            <div class="bottomScrollerGap" style="height: 3em;" />
+            <div class="poweredLogo"></div>
+        </div>
+    </div>
+</script>
+
+<script id="sectionsFillerTmpl" type="x-jquery-tmpl">
+    {{if hasSubCat}}
+
+    <li  class="cat_with_subcats">
+        <a href="${url}" id="cat_${cid}">
+            ${title}
+        </a>
+        <span class="plus_minus">+</span>
+        <div class="sub_sections" style="display:none">
+            <ul> 
+                {{tmpl(data) "#SubSectionsFillerTmpl"}}
+            </ul>
+        </div>
+    </li>        
+    {{else}}
+    <a href="${url}" >
+        <li class="root-cats" id="cat_${cid}">
+            ${title}
+        </li>
+    </a>
+    {{/if}}
+</script>
+
+<script id="SubSectionsFillerTmpl" type="x-jquery-tmpl">
+    <a href="${url}" id="cat_${cid}" >
+        <li  class="first subCatMarker">
+            ${title}
+        </li>
+    </a>
+</script>

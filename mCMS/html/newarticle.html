@@ -1,0 +1,131 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" type="text/css" media="screen, projection"/>
+<link rel="stylesheet" href="../system/css/print.css" type="text/css" media="print"/>
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/article.js');
+</script>
+<!-- CONTROL_SETTINGS
+objCnt/1
+pObjCnt/1
+lObjCnt/1
+paging/true
+-->
+<!-- Start of container -->
+<script id="ArticleTmpl" type="x-jquery-tmpl">
+<div id="articleContainer" class="_pageContainerCustomTheme">
+<div id="articleContainer-thumbs">
+   <div class="articleScroller">
+    <!--<div class="spacer"></div>-->
+    <div class="articleMainFeatured _pageCaptionCustomTheme">${catTitle}</div>
+    <div class="thumbnailWrapper" style="margin-top: 0 !important">
+        <div class="thumbnailScroller">{{tmpl(images) "#ArticleThumbItemTmpl"}}</div>
+    </div>
+    <div class="articleMainContent">
+                {{if imageUrl}}
+                <a href="${href}">
+                    <div class="articleMainImg" src="${imageUrl}"><img class="oLazy" src="../system/images/lazy_load.gif"/>
+                        {{if hasVideo}}<div class="videoPlay-btn"></div>{{/if}}
+                    </div>
+                </a>
+                {{/if}}
+
+        <div class="articleMainTitle _postTitleCustomTheme">
+            <p>${title}</p>
+        </div>
+        <div class="articleMainPublished _postByLineCustomTheme">
+            <p>{{if author}}Published By: ${author} {{/if}} ${p_date}</p>
+        </div>
+        <div class="articleMainCopy _postDescCustomTheme">
+        	<br />
+            {{html desc}}
+        </div>
+    </div>
+     </div>
+     <div id="socialbuttons">
+        <div class="black_overlay"></div>
+        <div class="sharepopup">
+            <a class="white button" href="http://appsurl/fb">Facebook</a>
+            <a class="white button" href="http://appsurl/tw">Twitter</a>
+            <a class="white button" href="http://appsurl/email">Email</a>
+            <a class="black button cancel_btn">Cancel</a>
+        </div>
+    </div>
+</div>
+</script>
+
+<script id="ArticleNoThumbsTmpl" type="x-jquery-tmpl">
+<div id="articleContainer" class="_pageContainerCustomTheme">
+    <div id="articleContainer-nothumbs">
+        <div class="articleScroller">
+        <div class="spacer-nothumbs"></div>
+        <div class="articleMainContent-nothumbs">
+        <div class="articleMainFeatured-nothumbs  _pageCaptionCustomTheme">${catTitle}</div>
+                {{if imageUrl}}
+                    <a href="${href}">
+                        <div class="articleMainImg-nothumbs" src="${imageUrl}"><img class="oLazy" src="../system/images/lazy_load.gif"/>
+                            {{if hasVideo}}<div class="videoPlay-btn"></div>{{/if}}
+                        </div>
+                    </a>
+                {{/if}}
+
+        <div class="articleMainTitle-nothumbs _postTitleCustomTheme">
+            <p>${title}</p>
+        </div>
+        <div class="articleMainPublished-nothumbs  _postByLineCustomTheme">
+            <p>{{if author}}Published By: ${author} {{/if}} ${p_date}</p>
+        </div>
+        <div class="articleMainCopy-nothumbs  _postDescCustomTheme">
+        	<br />
+            {{html desc}}
+        </div>
+       </div>
+    </div>
+</div>
+</script>
+
+<script id="ArticleThumbItemTmpl" type="x-jquery-tmpl">
+       <a href="${href}"><div class="thumbnailImg" src="${link}"><img class="oLazy" src="../system/images/lazy_load.gif"/></div></a>
+</script>
+
+ <div id="socialbuttons" class="shareiPhoneContainer" style="display:none;">
+        <div class="black_overlay"></div>
+        <div class="sharepopup">
+            <a class="white button" href="http://appsurl/fb">Facebook</a>
+            <a class="white button" href="http://appsurl/tw">Twitter</a>
+            <a class="white button" href="http://appsurl/email">Email</a>
+            <a class="black button cancel_btn">Cancel</a>
+        </div>
+ </div>
+<!-- End of container -->
+
+<script id="footerAdTmpl" type="x-jquery-tmpl">  
+    <a href="${action_url}"><div style="background:#FFF url('${thumb}') no-repeat center;background-size:cover;"></div>
+</script>
+
+<script type="text/javascript">
+    showFooterAds($('body'), oIP.adJson);
+    function showFooterAds(context, json){
+        if (json == null || (Object.keys && Object.keys(json).length == 0))
+            return;
+        var array = [];
+        $.each( json, function(key, item) {
+            if (item.ad_description && item.ad_description.toLowerCase() == 'footer') {
+                item.thumb = item.images[0] ? item.images[0].link : "";
+                array.push(item);
+            }
+        }); 
+
+        if(array.length == 0){
+           return;
+        }
+
+        var item = Math.round(Math.random() * (array.length - 1));
+        if ($("#footer-ad", context).length == 0)
+           $('<div id="footer-ad"></div>').appendTo(context);
+        $("#footer-ad", context).html($("#footerAdTmpl").tmpl(array[item]));
+        $('#footer-ad').click(function(){
+            _recordAdsView(network_id, array[item].ad_id, array[item].action_url, null, 1, 0);
+        });
+    }
+</script>

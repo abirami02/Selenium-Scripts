@@ -1,0 +1,86 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+
+<style type="text/css">
+   .pulseScroll {
+    height: 11em;
+    overflow: hidden;
+   }
+   .pulseScroller, #bottomScroller {
+    overflow: scroll;
+    -webkit-overflow-scrolling: touch;
+   }
+   .pulseScroller .videoGridItem { margin: 0 1em 0 0;}
+   .gridScroller {padding-top: 60px;}
+   .categoriesHeader:first { padding-top: 20px; }
+   .videoGridItem .oLazy img { width: 16px !important; height: 16px !important; position: static; margin: 0 auto;}    
+   .videoGridItem.noImgBg {border: 1px solid grey;}
+</style>
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/grid.js');
+</script>
+
+<!-- CONTROL_SETTINGS
+objCnt/99
+pObjCnt/99
+lObjCnt/99
+paging/false
+-->
+
+<script id="PulseDefTmpl" type="x-jquery-tmpl">
+    <div id="categoriesContainer" class="_pageContainerCustomTheme">
+        <div class="categoriesWrapper">
+            <div id="bottomScroller" class="gridScroller">
+                    {{tmpl(pulse) "#PulseListingTmpl"}}
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="PulseListingTmpl" type="x-jquery-tmpl">
+    <div class="pulse_category">   
+            <a href="${url}"><span class="categoriesHeader _pageCaptionCustomTheme">${catTitle}</span></a> 
+            <div class="pulseScroller">     
+                <ul class="pulseScroll">
+                      {{tmpl(data) "#PulseListingItemTmpl"}}         
+                </ul>
+            </div>
+    </div>
+</script>
+
+<script id="NoArticlesTmpl" type="x-jquery-tmpl">
+    <div id="wrapper">
+        <div id="bottomWrapper" class="bottomWrapper">         
+            <ul id="homenews">
+                <h1 class="no_content_msg">No content available for this category. Please create some posts and try again!</h1>           
+            </ul>
+        </div>
+    </div>
+</script>
+
+<script id="PulseListingItemTmpl" type="x-jquery-tmpl">
+  
+        {{if image_url}}
+            {{if media_url}}
+                <a class="videoGridItemLink" href="${'http://appsurl/videoviewer?link=' + window.encodeURIComponent(media_url) + '&redirect=' + window.encodeURIComponent(baseUrl + article_url)}">
+                <div class="videoGridItem" id="art_${id}" style="-webkit-transform: translate3d(0, 0, 0);">
+                <div class="videoPlay-btn"></div>
+            {{else}}
+                <a class="videoGridItemLink" href="${baseUrl + article_url}">
+                <div class="videoGridItem" id="art_${id}" style="-webkit-transform: translate3d(0, 0, 0);">
+            {{/if}}
+                    <div class="oLazy" id="${id}" src="${image_url}"><img src="../system/images/lazy_load.gif" ></div>
+                    <div class="teaser">
+                    <p class="videotitle _pageCaptionCustomTheme">${item_title}</p>
+                    </div>
+                </div>
+            </a>
+        {{else}}
+             <a class="videoGridItemLink" href="${baseUrl + article_url}">
+                <div class="videoGridItem noImgBg" id="art_${id}" style="-webkit-transform: translate3d(0, 0, 0);border: 1px solid gray;">
+                        <p class="videotitle _pageCaptionCustomTheme" style="height: 100%; overflow: hidden;">${item_title}</p>
+                </div>
+             </a>
+        {{/if}}
+</script>

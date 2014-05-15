@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+<link rel="stylesheet" href="../system/css/add2home.css" />
+
+<style type="text/css">
+    .print {
+        background: url('../system/images/print.png');  
+        background-size: contain;
+        display: none;
+        float: right;
+        width: 20px;
+        height: 20px;
+        position: relative;
+        top: -0.7em;
+        margin-right: 2em;
+    }
+    .article .print {
+        display:none;   
+    }
+</style>
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/toolbar.js');
+    //Toolbar settings
+    oIP.registerSettings('{"name":"toolbar", "type":"toolbar", "tablet":{"landscape":{"height": "44","x": "0","y": "0"},"portrait": {"height": "44","x":"0","y": "0"},"display": "block", "position":"top"}, "smartphone": {"landscape": {"height": "44","x": "0","y": "0"},"portrait": {"height": "44","x": "0","y":"0"},"display": "block", "position":"top"}}');          
+</script>
+
+<script id="ToolbarTmpl" type="x-jquery-tmpl">
+    <header>
+        <div class="toolbar home _headerCustomTheme">
+            <a id="sectionsBtn" href=""><div class="sectionsBtn"></div></a>
+            <a  href="http://appsurl/back"><div class="backBtn"></div></a>
+	        <a  href="javascript:void(0)"><div class="logo _brandingSmall"></div></a>
+	        <div class="share"></div>
+            <a href="javascript:void(0)"><div class="fav"></div></a>
+            <div class="settingsBtn"></div>
+            <a href="javascript:void(0)"><div class="favorite"></div></a>
+            <a id="tb_font" href="javascript:void(0)"><div></div></a>
+            <div class="print"></div>
+        </div>
+    </header>
+</script>

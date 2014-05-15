@@ -1,0 +1,134 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/scroller.js');
+    oIP.includeJS('../system/js/articles_with_list.js');
+</script>
+
+<!-- CONTROL_SETTINGS
+objCnt/99
+pObjCnt/99
+lObjCnt/99
+paging/false
+-->
+
+<script id="ArticlesCatDefTmpl" type="x-jquery-tmpl">
+    <div id="articlesContainer" class="_pageContainerCustomTheme">
+        <div class="articlesWrapper">         
+            <p class="articlesHeader _pageCaptionCustomTheme">${cat}</p>
+            <div id="bottomWrapper" class="bottomWrapper">       
+                <div id="homenews">
+                    {{tmpl(bottom) "#ArticlesListBottomScroll"}}
+                </div>   
+            </div>
+        </div>
+    </div>
+</script>
+
+<script id="ArticlesListBottomScroll" type="x-jquery-tmpl">
+    <div class="articlesRow" style="-webkit-transform: translate3d(0, 0, 0);"> 
+        <a href="${article_url}">
+            {{if img}}
+            <div id="art_${item_id}" class="articlesRowImg" >
+                <div class="oLazy" src="${img}" id="${item_id}"><img src="../system/images/lazy_load.gif" ></div>
+            </div>
+            <div class="articlesRowCopy">
+            {{else}}
+            <div class="articlesRowCopy" style="width:100%">
+            {{/if}}
+                <p class="articlesTitle _postTitleCustomTheme">${title}</p>
+                <p class="articlesDate _postByLineCustomTheme">${p_date} {{if author}}  by ${author} {{/if}} </p>
+                <p class="articlesCopy _postDescCustomTheme">{{html desc}}</p>
+            </div>
+        </a>
+    </div>
+</script>
+
+<script id="ArticlesfeatureVideo" type="x-jquery-tmpl">
+<div id="photosContainer">    
+    <div class="photosWrapper">
+        <p class="categoriesHeader _pageCaptionCustomTheme">${cat}</p>
+          <a  href="${media_url}">
+            <div class="photosMain" id="art_${id}" style="-webkit-transform: translate3d(0, 0, 0);">
+                <div class="oLazy" id="${id}" src="${img}"><img src="../system/images/lazy_load.gif" ></div>
+                {{if video}}
+                <div class="featuredVideo-btn" />
+                 <div class="photosOverlay">
+                    <p class="photosOverlay-text _postTitleCustomTheme">${title1}</p>
+                </div>
+                {{else}}
+                <div class="photoOverlay">
+                    <p class="photoOverlay-text _postTitleCustomTheme">${title1}</p>
+                </div>
+                {{/if}}
+            </div>
+          </a>
+    </div>
+</div>
+</script>
+
+
+<script id="ArticlesvideoGridTmpl" type="x-jquery-tmpl">
+    <a class="videoGridItemLink" href="${media_url}">
+       <div class="videoGridItem" id="art_${id}" style="-webkit-transform: translate3d(0, 0, 0);">
+            <div class="oLazy" id="${id}" src="${img}"><img src="../system/images/lazy_load.gif" ></div>
+            {{if video}}
+            <div class="videoPlay-btn" />
+            {{/if}}
+            <div class="teaser">
+                <p class="videotitle _postTitleCustomTheme">${title}</p>
+            </div>
+        </div>
+    </a>		
+</script>
+
+<script id="ArticlesNoArticlesTmpl" type="x-jquery-tmpl">
+<div id="noContent-container">
+	<div class="noContent-wrapper">
+		<div class="noContentMiddle">
+			<div class="noContentTopBar">
+				<a href="http://appsurl/back"><div class="noContentCloseBtn"></div></a>
+				<div class="noContentTopBarTitle"></div>
+			</div>
+			<div class="noContentMainContent">
+				<div class="noContentSocialLinks">
+					<p class="noContentMessage _postDescCustomTheme">No content available for this category.<br />Please create some posts and try again!</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+
+
+<script id="footerAdTmpl" type="x-jquery-tmpl">  
+    <a href="${action_url}"><div style="background:#FFF url('${thumb}') no-repeat center;background-size:cover;"></div>
+</script>
+
+<script type="text/javascript">
+    showFooterAds($('body'), oIP.adJson);
+    function showFooterAds(context, json){
+        if (json == null || Object.keys(json).length == 0)
+            return;
+        var array = [];
+        $.each( json, function(key, item) {
+            if (item.ad_description && item.ad_description.toLowerCase() == 'footer') {
+                item.thumb = item.images[0] ? item.images[0].link : "";
+                array.push(item);
+            }
+        }); 
+
+        if(array.length == 0){
+           return;
+        }
+
+        var item = Math.round(Math.random() * (array.length - 1));
+        if ($("#footer-ad", context).length == 0)
+           $('<div id="footer-ad"></div>').appendTo(context);
+        $("#footer-ad", context).html($("#footerAdTmpl").tmpl(array[item]));
+        $('#footer-ad').click(function(){
+            _recordAdsView(network_id, array[item].ad_id, array[item].action_url, null, 1, 0);
+        });
+    }
+</script>

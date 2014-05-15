@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="../system/css/instaapps.css" />
+<link rel="stylesheet" href="../system/css/instaapps_custom.css" />
+
+<script type="text/javascript">
+    oIP.includeJS('../system/js/favorites.js');
+</script>
+
+<!-- CONTROL_SETTINGS
+objCnt/99
+pObjCnt/99
+lObjCnt/99
+paging/false
+-->
+
+
+<script id="favoritesResultsTemplate" type="x-jquery-tmpl">
+    <div id="favoritesContainer" class="_pageContainerCustomTheme">
+        <div class="favoritesWrapper">
+          <p class="favoritesHeader _pageCaptionCustomTheme">Favorites</p>
+          <div class="favoritesScroll">
+              <div class="favoritesScroller"></div>
+          </div>
+    	</div>
+    </div>
+</script>
+
+<script id="favoritesResultItemTemplate" type="x-jquery-tmpl">
+      <div class="favoritesRow">
+            <a href="${url}">
+			<div class="favoritesRowCopy">
+				<p class="favoritesTitle _postTitleCustomTheme">${title}</p>
+				<p class="favoritesDate _postByLineCustomTheme">${p_date}</p>
+				<p class="favoritesCopy _postDescCustomTheme">${desc}</p>
+			</div>
+            </a>
+      </div>
+</script>
